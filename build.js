@@ -1,26 +1,42 @@
 const fs = require('fs');
-const minify = require('html-minifier-terser').minify;
+const path = require('path');
+const { minify } = require('html-minifier-terser');
 
 const input = 'index.html';
-const output = 'index.min.html';
+const distDir = './dist';
+const output = path.join(distDir, 'index.html');
 
 async function build() {
-    const html = fs.readFileSync(input, 'utf8');
+    try {
+        if (!fs.existsSync(distDir)) {
+            fs.mkdirSync(distDir);
+        }
 
-    const result = await minify(html, {
-        removeAttributeQuotes: true,
-        collapseWhitespace: true,
-        removeComments: true,
-        minifyCSS: true,
-        minifyJS: true,
-    });
+        const html = fs.readFileSync(input, 'utf8');
 
-    fs.writeFileSync(output, result);
+        const result = await minify(html, {
+            removeAttributeQuotes: true,
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyCSS: true,
+            minifyJS: true,
+        });
 
-    const oldSize = (fs.statSync(input).size / 1024).toFixed(2);
-    const newSize = (fs.statSync(output).size / 1024).toFixed(2);
+        fs.writeFileSync(output, result);
 
-    console.log(`Готово! Размер уменьшен с ${oldSize}KB до ${newSize}KB`);
+        const oldSize = (fs.statSync(input).size / 1024).toFixed(2);
+        const newSize = (fs.statSync(output).size / 1024).toFixed(2);
+
+        console.log(`Build complete! Size reduced from ${oldSize}KB to ${newSize}KB.`);
+
+        if (newSize > 4) {
+            console.error(`Error: file size ${newSize}KB exceeds the 4KB limit!`);
+            process.exit(1);
+        }
+    } catch (err) {
+        console.error('Build error:', err);
+        process.exit(1);
+    }
 }
 
 build();
