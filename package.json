@@ -7,7 +7,7 @@
   "author": "Yauheni Tsimashchuk",
   "license": "ISC",
   "type": "commonjs",
-  "devDependencies": {
+  "dependencies": {
     "html-minifier-terser": "^7.2.0"
   }
 }
