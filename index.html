@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Yauheni Tsimashchuk</title>
+    <title>Yauheni Tsimashchuk | Full-Stack Developer</title>
+
+    <meta name="description" content="Portfolio of Yauheni Tsimashchuk, a Full-Stack Developer specializing in TypeScript, React, and Node.js. Exploring scalable web and mobile solutions.">
+
     <style>
         :root {
             --bg: #f7f7f5;
@@ -50,7 +53,14 @@
 
         input[type="radio"] {
             position: absolute;
-            opacity: 0;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         .theme-controls {
@@ -134,9 +144,9 @@
     </style>
 </head>
 <body>
-<input type="radio" name="t" id="t-sys" checked>
-<input type="radio" name="t" id="t-light">
-<input type="radio" name="t" id="t-dark">
+<input type="radio" name="t" id="t-sys" checked aria-label="System theme">
+<input type="radio" name="t" id="t-light" aria-label="Light theme">
+<input type="radio" name="t" id="t-dark" aria-label="Dark theme">
 
 <nav class="theme-controls">
     <label for="t-sys">Auto</label>
