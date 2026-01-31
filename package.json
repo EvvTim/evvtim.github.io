@@ -1,0 +1,13 @@
+{
+  "name": "evvtim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {},
+  "author": "Yauheni Tsimashchuk",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0"
+  }
+}

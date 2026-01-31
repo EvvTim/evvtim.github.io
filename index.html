@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Yauheni Tsimashchuk</title>
+    <style>
+        :root {
+            --bg: #f7f7f5;
+            --text: #1a1a1a;
+            --sec: #666;
+            --mut: #888;
+            --div: #cfcfcf;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f0f10;
+                --text: #e8e8e6;
+                --sec: #a0a0a0;
+                --mut: #777;
+                --div: #2a2a2a;
+            }
+        }
+
+        body:has(#t-light:checked) {
+            --bg: #f7f7f5;
+            --text: #1a1a1a;
+        }
+
+        body:has(#t-dark:checked) {
+            --bg: #0f0f10;
+            --text: #e8e8e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.75;
+            transition: background .4s, color .3s;
+        }
+
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .theme-controls {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            font: 0.7rem sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .theme-controls label {
+            cursor: pointer;
+            color: var(--mut);
+        }
+
+        body:has(#t-sys:checked) [for="t-sys"],
+        body:has(#t-light:checked) [for="t-light"],
+        body:has(#t-dark:checked) [for="t-dark"] {
+            color: var(--text);
+            font-weight: bold;
+        }
+
+        .page {
+            max-width: 760px;
+            padding: 5rem 2rem;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        .divider {
+            width: 48px;
+            height: 1px;
+            background: var(--div);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--sec);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--sec);
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            border-bottom-color: currentColor;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: var(--mut);
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+<input type="radio" name="t" id="t-sys" checked>
+<input type="radio" name="t" id="t-light">
+<input type="radio" name="t" id="t-dark">
+
+<nav class="theme-controls">
+    <label for="t-sys">Auto</label>
+    <label for="t-light">Light</label>
+    <label for="t-dark">Dark</label>
+</nav>
+
+<main class="page">
+    <header style="margin-bottom: 5rem">
+        <h1>Yauheni Tsimashchuk</h1>
+        <p class="subtitle">Full-Stack Developer · TS · React · Node.js</p>
+    </header>
+
+    <section>
+        <h2>About</h2>
+        <div class="divider"></div>
+        <p>Full-stack developer building web and mobile apps with JavaScript and TypeScript. Focused on efficient,
+            scalable solutions and smooth user experiences.</p>
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <div class="divider"></div>
+        <a href="mailto:yauhentim@gmail.com">yauhentim@gmail.com</a>
+    </section>
+
+    <footer>© 2026 Yauheni Tsimashchuk</footer>
+</main>
+</body>
+</html>
