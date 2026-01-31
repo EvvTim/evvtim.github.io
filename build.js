@@ -12,6 +12,10 @@ async function build() {
             fs.mkdirSync(distDir);
         }
 
+        if (fs.existsSync('robots.txt')) {
+            fs.copyFileSync('robots.txt', path.join(distDir, 'robots.txt'));
+        }
+
         const html = fs.readFileSync(input, 'utf8');
 
         const result = await minify(html, {

@@ -4,15 +4,14 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Yauheni Tsimashchuk | Full-Stack Developer</title>
-
-    <meta name="description" content="Portfolio of Yauheni Tsimashchuk, a Full-Stack Developer specializing in TypeScript, React, and Node.js. Exploring scalable web and mobile solutions.">
+    <meta name="description" content="Yauheni Tsimashchuk, a Full-Stack Developer specializing in TypeScript, React, and Node.js.">
 
     <style>
         :root {
             --bg: #f7f7f5;
             --text: #1a1a1a;
-            --sec: #666;
-            --mut: #888;
+            --sec: #595959;
+            --mut: #636363;
             --div: #cfcfcf;
         }
 
@@ -20,20 +19,24 @@
             :root {
                 --bg: #0f0f10;
                 --text: #e8e8e6;
-                --sec: #a0a0a0;
-                --mut: #777;
-                --div: #2a2a2a;
+                --sec: #b2b2b2;
+                --mut: #a1a1a1;
+                --div: #333333;
             }
         }
 
         body:has(#t-light:checked) {
             --bg: #f7f7f5;
             --text: #1a1a1a;
+            --sec: #595959;
+            --mut: #636363;
         }
 
         body:has(#t-dark:checked) {
             --bg: #0f0f10;
             --text: #e8e8e6;
+            --sec: #b2b2b2;
+            --mut: #a1a1a1;
         }
 
         * {
@@ -127,12 +130,12 @@
         a {
             color: inherit;
             text-decoration: none;
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid var(--div);
             transition: 0.3s;
         }
 
         a:hover {
-            border-bottom-color: currentColor;
+            border-bottom-color: var(--text);
         }
 
         footer {
