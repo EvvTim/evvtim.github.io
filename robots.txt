@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://evvtim.github.io/sitemap.xml

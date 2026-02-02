@@ -1,182 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Yauheni Tsimashchuk | Full-Stack Developer</title>
-    <meta name="description" content="Yauheni Tsimashchuk, a Full-Stack Developer specializing in TypeScript, React, and Node.js.">
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>Yauheni Tsimashchuk · Full-Stack Developer</title>
+    <meta name=description content="Full-Stack Developer">
+    <link rel=icon href=data:,>
 
     <style>
-        :root {
-            --bg: #f7f7f5;
-            --text: #1a1a1a;
-            --sec: #595959;
-            --mut: #636363;
-            --div: #cfcfcf;
+        :root{
+            --b:#f7f7f5;
+            --t:#1a1a1a;
+            --s:#595959;
         }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0f0f10;
-                --text: #e8e8e6;
-                --sec: #b2b2b2;
-                --mut: #a1a1a1;
-                --div: #333333;
+        @media(prefers-color-scheme:dark){
+            :root{
+                --b:#0f0f10;
+                --t:#e8e8e6;
+                --s:#a1a1a1;
             }
         }
-
-        body:has(#t-light:checked) {
-            --bg: #f7f7f5;
-            --text: #1a1a1a;
-            --sec: #595959;
-            --mut: #636363;
+        *{box-sizing:border-box;margin:0}
+        body{
+            min-height:100vh;
+            background:var(--b);
+            color:var(--t);
+            font:1rem/1.6 system-ui;
+            transition:background .3s,color .3s;
         }
-
-        body:has(#t-dark:checked) {
-            --bg: #0f0f10;
-            --text: #e8e8e6;
-            --sec: #b2b2b2;
-            --mut: #a1a1a1;
+        main{
+            max-width:760px;
+            margin:auto;
+            padding:5rem 2rem;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        main>*+*{margin-top:3.2rem}
+        hr{
+            width:48px;
+            height:1px;
+            border:0;
+            background:var(--s);
+            margin:1.5rem 0;
         }
-
-        body {
-            min-height: 100vh;
-            background: var(--bg);
-            color: var(--text);
-            font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.75;
-            transition: background .4s, color .3s;
+        h1{font-size:2.5rem}
+        header p,h2{
+            font-size:.8rem;
+            letter-spacing:.1em;
+            text-transform:uppercase;
+            color:var(--s);
         }
-
-        input[type="radio"] {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-
-        .theme-controls {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            display: flex;
-            gap: 1rem;
-            font: 0.7rem sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
-
-        .theme-controls label {
-            cursor: pointer;
-            color: var(--mut);
-        }
-
-        body:has(#t-sys:checked) [for="t-sys"],
-        body:has(#t-light:checked) [for="t-light"],
-        body:has(#t-dark:checked) [for="t-dark"] {
-            color: var(--text);
-            font-weight: bold;
-        }
-
-        .page {
-            max-width: 760px;
-            padding: 5rem 2rem;
-            margin: 0 auto;
-        }
-
-        section {
-            margin-bottom: 5rem;
-        }
-
-        .divider {
-            width: 48px;
-            height: 1px;
-            background: var(--div);
-            margin-bottom: 1.5rem;
-        }
-
-        h1 {
-            font-family: Georgia, serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-        }
-
-        .subtitle {
-            font-size: 0.8rem;
-            color: var(--sec);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        h2 {
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
-            color: var(--sec);
-            text-transform: uppercase;
-            margin-bottom: 1.25rem;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            border-bottom: 1px solid var(--div);
-            transition: 0.3s;
-        }
-
-        a:hover {
-            border-bottom-color: var(--text);
-        }
-
-        footer {
-            margin-top: 2rem;
-            font-size: 0.7rem;
-            color: var(--mut);
-            text-transform: uppercase;
+        h2{margin-bottom:1.25rem}
+        a{
+            color:inherit;
+            text-decoration:none;
+            border-bottom:1px solid var(--s);
+            transition:border-color .2s;
         }
     </style>
 </head>
+
 <body>
-<input type="radio" name="t" id="t-sys" checked aria-label="System theme">
-<input type="radio" name="t" id="t-light" aria-label="Light theme">
-<input type="radio" name="t" id="t-dark" aria-label="Dark theme">
-
-<nav class="theme-controls">
-    <label for="t-sys">Auto</label>
-    <label for="t-light">Light</label>
-    <label for="t-dark">Dark</label>
-</nav>
-
-<main class="page">
-    <header style="margin-bottom: 5rem">
+<main>
+    <header>
         <h1>Yauheni Tsimashchuk</h1>
-        <p class="subtitle">Full-Stack Developer · TS · React · Node.js</p>
+        <p>Full-Stack Developer · TS · React · Node.js</p>
     </header>
 
-    <section>
+    <div>
         <h2>About</h2>
-        <div class="divider"></div>
-        <p>Full-stack developer building web and mobile apps with JavaScript and TypeScript. Focused on efficient,
-            scalable solutions and smooth user experiences.</p>
-    </section>
+        <hr>
+        <p>Full-stack developer building web and mobile apps with JavaScript and TypeScript. Focused on efficient, scalable solutions and smooth user experiences.
+    </div>
 
-    <section>
+    <div>
         <h2>Contact</h2>
-        <div class="divider"></div>
-        <a href="mailto:yauhentim@gmail.com">yauhentim@gmail.com</a>
-    </section>
+        <hr>
+        <p><a href=mailto:yauhentim@gmail.com>yauhentim@gmail.com</a>
+    </div>
 
-    <footer>© 2026 Yauheni Tsimashchuk</footer>
 </main>
 </body>
-</html>
