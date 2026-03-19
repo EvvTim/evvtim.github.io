@@ -1,79 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset=utf-8>
-    <meta name=viewport content="width=device-width,initial-scale=1">
-    <title>Yauheni Tsimashchuk · Full-Stack Developer</title>
-    <meta name=description content="Full-Stack Developer">
-    <link rel=icon href=data:,>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Yauheni Tsimashchuk · Developer</title>
     <style>
-        :root{
-            --b:#f7f7f5;
-            --t:#1a1a1a;
-            --s:#595959;
+        :root {
+            --b: #ffffff;
+            --t: #111111;
+            --s: #888888;
+            --l: #efefef;
+            --card-b: rgba(255, 255, 255, 0.98);
+            --card-s: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --accent: #0070f3;
         }
-        @media(prefers-color-scheme:dark){
-            :root{
-                --b:#0f0f10;
-                --t:#e8e8e6;
-                --s:#a1a1a1;
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --b: #0a0a0a;
+                --t: #f0f0f0;
+                --s: #777777;
+                --l: #1a1a1a;
+                --card-b: rgba(18, 18, 18, 0.98);
+                --card-s: 0 10px 40px rgba(0, 0, 0, 0.4);
+                --accent: #3291ff;
             }
         }
-        *{box-sizing:border-box;margin:0}
-        body{
-            min-height:100vh;
-            background:var(--b);
-            color:var(--t);
-            font:1rem/1.6 system-ui;
-            transition:background .3s,color .3s;
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        main{
-            max-width:760px;
-            margin:auto;
-            padding:5rem 2rem;
+
+        body {
+            background: var(--b);
+            color: var(--t);
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
-        main>*+*{margin-top:3.2rem}
-        hr{
-            width:48px;
-            height:1px;
-            border:0;
-            background:var(--s);
-            margin:1.5rem 0;
+
+        main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15vh 2rem;
         }
-        h1{font-size:2.5rem}
-        header p,h2{
-            font-size:.8rem;
-            letter-spacing:.1em;
-            text-transform:uppercase;
-            color:var(--s);
+
+        header {
+            margin-bottom: 5rem;
+            position: relative;
         }
-        h2{margin-bottom:1.25rem}
-        a{
-            color:inherit;
-            text-decoration:none;
-            border-bottom:1px solid var(--s);
-            transition:border-color .2s;
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .name-trigger {
+            position: relative;
+            cursor: help;
+            display: inline-block;
+            color: var(--t);
+            outline-offset: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--s);
+        }
+
+        h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--s);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--l);
+            margin-left: 1rem;
+        }
+
+        section {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .name-card, .tech-tooltip {
+            position: absolute;
+            background: var(--card-b);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--l);
+            border-radius: 12px;
+            box-shadow: var(--card-s);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 1, 0.2, 1);
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .name-trigger:hover .name-card, .name-trigger:focus-within .name-card,
+        .tech-term:hover .tech-tooltip, .tech-term:focus-within .tech-tooltip {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .name-card {
+            top: -20px;
+            left: calc(100% + 20px);
+            width: 280px;
+            padding: 1.5rem;
+            transform: translateX(10px);
+        }
+
+        .name-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -30px;
+            width: 30px;
+            height: 100%;
+        }
+
+        .name-trigger:hover .name-card {
+            transform: translateX(0);
+        }
+
+        .tech-term {
+            position: relative;
+            font-weight: 500;
+            text-decoration: underline dotted var(--s);
+            text-underline-offset: 4px;
+            cursor: help;
+        }
+
+        .tech-tooltip {
+            bottom: 100%;
+            left: 50%;
+            width: 240px;
+            padding: 1rem;
+            transform: translate(-50%, -10px);
+            font-weight: normal;
+            font-size: 0.8rem;
+        }
+
+        .tech-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+        }
+
+        .tech-term:hover .tech-tooltip {
+            transform: translate(-50%, -15px);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--l);
+            object-fit: cover;
+        }
+
+        .profile-info strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--t);
+            line-height: 1.2;
+        }
+
+        .profile-info span {
+            font-size: 0.75rem;
+            color: var(--s);
+        }
+
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-top: 1px solid var(--l);
+            padding-top: 1rem;
+        }
+
+        .card-link {
+            font-size: 0.75rem;
+            color: var(--s);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.2s;
+        }
+
+        .card-link:hover {
+            color: var(--accent);
+        }
+
+        .card-link b {
+            font-weight: 500;
+            color: var(--t);
+        }
+
+        .tech-link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        .tech-link:hover {
+            text-decoration: underline;
+        }
+
+        a.contact-main {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid var(--l);
+            transition: 0.3s;
+        }
+
+        a.contact-main:hover {
+            border-bottom-color: var(--t);
+        }
+
+        @media (max-width: 900px) {
+            .name-card {
+                left: 0;
+                top: calc(100% + 15px);
+                transform: translateY(10px);
+            }
+
+            .name-trigger:hover .name-card {
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-
 <body>
+
 <main>
     <header>
-        <h1>Yauheni Tsimashchuk</h1>
-        <p>Full-Stack Developer · TS · React · Node.js</p>
+        <h1>
+            <span class="name-trigger" tabindex="0" aria-describedby="profile-card">
+                <h1>Yauheni Tsimashchuk</h1>
+                <div class="name-card" id="profile-card" role="tooltip">
+                    <div class="profile-header">
+                        <img loading="lazy" src="https://avatars.githubusercontent.com/u/14082240?v=4" class="avatar" alt="avatar">
+                        <div class="profile-info">
+                            <strong>Yauheni Tsimashchuk</strong>
+                            <span>📍 Lublin, Poland</span>
+                        </div>
+                    </div>
+                    <div class="links-grid">
+                        <a href="https://github.com/EvvTim" target="_blank" class="card-link"><b>GitHub</b> <span>/EvvTim</span></a>
+                        <a href="https://gitlab.com/EvvTim" target="_blank" class="card-link"><b>GitLab</b> <span>/EvvTim</span></a>
+                        <a href="https://t.me/EvvTim" target="_blank"
+                           class="card-link"><b>Telegram</b> <span>@EvvTim</span></a>
+                        <a href="mailto:yauhentim@gmail.com"
+                           class="card-link"><b>Email</b> <span>yauhentim@gmail.com</span></a>
+                    </div>
+                </div>
+            </span>
+        </h1>
+        <p class="subtitle">Full-Stack Developer</p>
     </header>
 
-    <div>
+    <section>
         <h2>About</h2>
-        <hr>
-        <p>Full-stack developer building web and mobile apps with JavaScript and TypeScript. Focused on efficient, scalable solutions and smooth user experiences.
-    </div>
+        <p>
+            Building high-performance web interfaces and cross-platform mobile applications. Currently focused on
 
-    <div>
+            <span class="tech-term" tabindex="0" aria-describedby="tt-rn">
+                React Native
+                <span class="tech-tooltip" id="tt-rn" role="tooltip">
+                    Framework for building native apps using React and JavaScript.
+                    <a href="https://reactnative.dev/" target="_blank" class="tech-link">reactnative.dev →</a>
+                </span>
+            </span>,
+
+            <span class="tech-term" tabindex="0" aria-describedby="tt-r">
+                React
+                <span class="tech-tooltip" id="tt-r" role="tooltip">
+                    A JavaScript library for building user interfaces with components.
+                    <a href="https://react.dev/" target="_blank" class="tech-link">react.dev →</a>
+                </span>
+            </span>,
+
+            <span class="tech-term" tabindex="0" aria-describedby="tt-ts">
+                TypeScript
+                <span class="tech-tooltip" id="tt-ts" role="tooltip">
+                    Strongly typed programming language that builds on JavaScript.
+                    <a href="https://www.typescriptlang.org/" target="_blank" class="tech-link">typescriptlang.org →</a>
+                </span>
+            </span>,
+
+            and
+
+            <span class="tech-term" tabindex="0" aria-describedby="tt-node">
+                Node.js
+                <span class="tech-tooltip" id="tt-node" role="tooltip">
+                    Asynchronous event-driven JavaScript runtime for backend.
+                    <a href="https://nodejs.org/" target="_blank" class="tech-link">nodejs.org →</a>
+                </span>
+            </span>.
+        </p>
+    </section>
+
+    <section>
         <h2>Contact</h2>
-        <hr>
-        <p><a href=mailto:yauhentim@gmail.com>yauhentim@gmail.com</a>
-    </div>
-
+        <p><a href="mailto:yauhentim@gmail.com" class="contact-main">yauhentim@gmail.com</a></p>
+    </section>
 </main>
+
 </body>
+</html>

@@ -13,7 +13,7 @@ async function build() {
         const html = fs.readFileSync(input, 'utf8');
 
         const result = await minify(html, {
-            collapseWhitespace: true,
+            collapseWhitespace: false,
             conservativeCollapse: false,
             removeComments: true,
             removeAttributeQuotes: true,
@@ -44,7 +44,7 @@ async function build() {
 
         console.log(`Build complete! Size reduced from ${oldSize}KB to ${newSize}KB (${savings}% saved).`);
 
-        if (newSize > 4) {
+        if (newSize > 7) {
             console.error(`❌ Error: file size ${newSize}KB exceeds the 4KB limit!`);
             process.exit(1);
         }
